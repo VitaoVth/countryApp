@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ country?.name.common }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="country">
+  <ion-card>
+    <img [src]="country.flags.svg" alt="{{ country.name.common }}">
+    <ion-card-header>
+      <ion-card-title>{{ country.name.common }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Capital:</strong> {{ country.capital[0] }}</p>
+      <p><strong>Region:</strong> {{ country.region }}</p>
+      <p><strong>Population:</strong> {{ country.population | number }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
