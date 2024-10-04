@@ -9,14 +9,19 @@ import { CountryService } from '../../services/country.service';
 })
 export class DetailsPage implements OnInit {
 
-  country: any;  // Holds the country data
+  country: any;
 
   constructor(private route: ActivatedRoute, private countryService: CountryService) { }
 
   ngOnInit() {
-    const countryName = this.route.snapshot.paramMap.get('name');  // Get the country name from the route parameters
-    this.countryService.getCountryByName(countryName).subscribe(data => {
-      this.country = data[0];  // Assuming the API returns an array of results, the first entry is the country
-    });
+    const countryName = this.route.snapshot.paramMap.get('name');
+    if (countryName) {
+      this.countryService.getCountryByName(countryName).subscribe(data => {
+        this.country = data[0];
+      });
+    } else {
+      // Trate o caso em que o nome do país é null
+      console.error('Nome do país não encontrado na rota');
+    }
   }
 }
